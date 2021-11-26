@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="columns">
+            <div class="column is-12">
+                <h1 class="title">Edit profile</h1>
+                <div>
+                {% if user.userprofile.avatar %}
+                    <figure class="image is-128x128">
+                        <img src="{{ user.userprofile.avatar.url }}">
+                    </figure>
+                {% endif %}
+                </div>
+                <hr>
+                <hr>
+
+                <form method="post" enctype="multipart/form-data" action=".">
+                    {% csrf_token %}
+                    
+                    {{ form.as_p}}
+
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-success">Save changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
